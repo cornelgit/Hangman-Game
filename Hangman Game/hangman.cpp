@@ -142,6 +142,7 @@ void display_unguessed(std::string word)
 {
     //display tip
     std::cout << "\nNOTE: For each incorrect guess you are deducted a life. There is no penalty for attempting to guess full word." << std::endl;
+    std::cout << "Be aware that guessing a letter you've already guessed incorrectly will result in a life deduction each time." << std::endl;
 
     std::cout << "The word is " << word.length() << " characters long." << std::endl;
     std::cout << "Word: ";
@@ -184,7 +185,7 @@ void start_guess(std::string word, std::string& subWord, std::string& guessedCha
         std::cout << std::endl << std::endl;
         pause();
         std::cout << "Returning to main menu." << std::endl << std::endl << std::endl;
-        main(); //stop current game and exit to menu
+        return; //stop current game and exit to menu
     }
 
     //if user wants to guess full word
@@ -248,7 +249,7 @@ void start_guess(std::string word, std::string& subWord, std::string& guessedCha
         std::cout << "\nThe word is \"" << word << "\"." << std::endl << std::endl;
         pause();
         std::cout << "Returning to main menu." << std::endl << std::endl << std::endl;
-        main();
+        return;
     }
 
     else {
@@ -274,7 +275,7 @@ void start_guess(std::string word, std::string& subWord, std::string& guessedCha
             std::cout << "\nThe word is \"" << word << "\"." << std::endl << std::endl;
             pause();
             std::cout << "Returning to main menu." << std::endl;
-            main();
+            return;
         }
     }
 }

@@ -28,41 +28,45 @@ int main()
     std::ifstream input;
     std::ofstream output;
     
-    display_menu();
-    menuOption = get_option();
+    do
+    {
+        display_menu();
+        menuOption = get_option();
 
-    //if user wants to exit game
-    if (menuOption == 2) {
-        std::cout << "Thank you playing!" << std::endl;
-        exit(0);
-    }
+        //if user wants to exit game
+        if (menuOption == 2) {
+            std::cout << "Thank you playing!" << std::endl;
+            exit(0);
+        }
 
-    else
-        difficulty = get_difficulty(); //get difficulty setting
-    
-    file = open_file(input);
+        else
+            difficulty = get_difficulty(); //get difficulty setting
 
-    //get file line (word) count
-    count = line_count(input, file);
+        file = open_file(input);
 
-    //get random line number from file
-    randomLine = random_line(count);
+        //get file line (word) count
+        count = line_count(input, file);
 
-    //read the random line (word)
-    word = get_word(input, randomLine);    
+        //get random line number from file
+        randomLine = random_line(count);
 
-    subWord.resize(word.length()); //resize subWord variable to match word length
+        //read the random line (word)
+        word = get_word(input, randomLine);
 
-    //reset subWord string to all underscores
-    for (unsigned int i = 0; i < subWord.length(); ++i) {
-        subWord[i] = '_';
-    }
+        subWord.resize(word.length()); //resize subWord variable to match word length
 
-    //display unguessed word
-    display_unguessed(word);   
-        
-    //begin guessing game
-    start_guess(word, subWord, guessedChars, difficulty);
+        //reset subWord string to all underscores
+        for (unsigned int i = 0; i < subWord.length(); ++i) {
+            subWord[i] = '_';
+        }
+
+        //display unguessed word
+        display_unguessed(word);
+
+        //begin guessing game
+        start_guess(word, subWord, guessedChars, difficulty);
+
+    } while(true);
 
     std::cout << "\n\n\n"; //extra space at the end
 
